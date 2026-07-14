@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+
+signal died(experience: int)
+
 enum State {
 	IDLE,
 	CHASE,
@@ -13,8 +16,9 @@ enum State {
 @export var attack_damage: int = 10
 @export var attack_speed: float = 1.0
 @export var hitpoints : int = 180
-@export var aggro_range: float = 256.0
-@export var attack_range: float = 80
+@export var aggro_range: float = 384.0
+@export var attack_range: float = 70
+@export var experience_reward : int = 600
 @export_category("Related Scenes")
 @export var death_packed : PackedScene
 
@@ -94,6 +98,7 @@ func update_animation() -> void:
 			animation_playback.travel("attack")
 
 
+#
 func attack() -> void:
 	var player_position : Vector2 = player.global_position
 	var attack_direction : Vector2 = (player_position - global_position).normalized()
@@ -106,22 +111,27 @@ func attack() -> void:
 	state = State.IDLE
 
 
+#
 func take_damage(damage_taken: int) -> void:
 	hitpoints -= damage_taken
 	if hitpoints <= 0:
 		death()
 
 
+#
 func death() -> void:
+	died.emit(experience_reward)
 	var death_scene : Node2D = death_packed.instantiate()
 	death_scene.position = global_position + Vector2(0.0, -32.0)
 	%Effects.add_child(death_scene)
 	queue_free()
 
 
+#
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	area.owner.take_damage(attack_damage)
 
 
+#
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	navigation_agent_2d.velocity = safe_velocity
