@@ -8,7 +8,10 @@ func _ready() -> void:
 	load_main_menu("game_start")
 	
 	
-func load_main_menu(_origin: String) -> void:
+func load_main_menu(origin: String) -> void:
+	if origin == "end_game_screen":
+		get_node("GameScene").queue_free()
+		
 	var main_menu : MainMenuUI = main_menu_packed.instantiate()
 	main_menu.new_game_pressed.connect(new_game)
 	main_menu.settings_pressed.connect(settings_open)
@@ -20,6 +23,11 @@ func load_main_menu(_origin: String) -> void:
 func new_game(origin: String) -> void:
 	if origin == "main_menu":
 		get_node("MainMenu").queue_free()
+		
+	if origin == "end_game_screen":
+		get_node("GameScene").queue_free()
+		await get_tree().process_frame # wait fo idle frame to ensure GameScene has been removed
+	
 	var game_scene = game_scene_packed.instantiate()
 	add_child(game_scene)
 	

@@ -2,14 +2,30 @@ extends Node2D
 
 signal levelup
 
+@export var end_game_screen_packed : PackedScene
+
+var total_enemies : int
+var killed_enemies : int = 0
+
 
 func _ready() -> void:
 	var enemy_array : Array = get_tree().get_nodes_in_group("enemies")
-	for i in enemy_array:
-		i.died.connect(experience_gained)
+	total_enemies = enemy_array.size()
 	
-	var player : CharacterBody2D = get_tree().get_first_node_in_group("player")
+	for i in enemy_array:
+		i.died.connect(enemy_died)
+	
+	var player : Player = get_tree().get_first_node_in_group("player")
+	player.game_over.connect(display_end_game_screen)
 	levelup.connect(player.calculate_stats)
+
+
+func enemy_died(experience_reward: int) -> void:
+	killed_enemies += 1
+	experience_gained(experience_reward)
+	
+	if killed_enemies == total_enemies:
+		display_end_game_screen(true)
 
 
 func experience_gained(experience_gain: int) -> void:
@@ -28,3 +44,20 @@ func level_up(new_experience: int) -> void:
 	PlayerData.level += 1
 	PlayerData.experience = new_experience
 	levelup.emit()
+	
+	
+func display_end_game_screen(victorious : bool) -> void:
+	var end_game_screen_scene : EndGameScreenUI = end_game_screen_packed.instantiate()
+	end_game_screen_scene.victorious = victorious
+		
+	var scene_handler: Node = get_node("/root/SceneHandler")
+	end_game_screen_scene.repeat_level.connect(scene_handler.new_game)
+	end_game_screen_scene.main_menu.connect(scene_handler.load_main_menu)
+	$UI.add_child(end_game_screen_scene)
+	
+	await get_tree().create_timer(0.4).timeout
+	var player : CharacterBody2D = get_tree().get_first_node_in_group("player")
+	player.set_process_mode(Node.PROCESS_MODE_DISABLED)
+	var enemies: Array = get_tree().get_nodes_in_group("enemies")
+	for enemy in enemies:
+		enemy.set_process_mode(Node.PROCESS_MODE_DISABLED)

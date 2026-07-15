@@ -2,8 +2,12 @@
 
 [ext_resource type="Script" uid="uid://csdld1voghqct" path="res://scenes/main/game_scene.gd" id="1_rfwcf"]
 [ext_resource type="PackedScene" uid="uid://cb1p38wgyw8tl" path="res://scenes/test_map.tscn" id="1_sdya7"]
+[ext_resource type="PackedScene" uid="uid://q1cojgue0i41" path="res://scenes/ui/end_game_screen.tscn" id="2_5odut"]
 
 [node name="GameScene" type="Node2D" unique_id=502295724]
 script = ExtResource("1_rfwcf")
+end_game_screen_packed = ExtResource("2_5odut")
 
 [node name="TestMap" parent="." unique_id=1845444121 instance=ExtResource("1_sdya7")]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=222443638]
