@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dd5chn7mty8ao" path="res://assets/ui/buttons/Button_Blue_3Slides.png" id="1_1g8jr"]
 [ext_resource type="Script" uid="uid://6ggjbrefmhlu" path="res://scenes/ui/main_menu.gd" id="1_x2yvf"]
 [ext_resource type="Texture2D" uid="uid://t6ugsh3rd7ag" path="res://assets/ui/buttons/Button_Blue_3Slides_Pressed.png" id="2_m1kxf"]
+[ext_resource type="PackedScene" uid="uid://c5ndx2ixkdlyr" path="res://scenes/maps/main_menu_background.tscn" id="2_uhagc"]
 [ext_resource type="Texture2D" uid="uid://crpe6wlm1i2bo" path="res://assets/ui/buttons/Button_Hover_3Slides.png" id="3_x2yvf"]
 [ext_resource type="FontFile" uid="uid://d00h4ctsh5ohj" path="res://assets/fonts/PirataOne-Regular.ttf" id="4_m1kxf"]
 
@@ -15,7 +16,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_x2yvf")
 
+[node name="MainMenuBackground" parent="." unique_id=1845444121 instance=ExtResource("2_uhagc")]
+
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=621053769]
+z_index = 3
 layout_mode = 0
 offset_right = 600.0
 offset_bottom = 1080.0
