@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://q1cojgue0i41"]
+
+[ext_resource type="FontFile" uid="uid://d00h4ctsh5ohj" path="res://assets/fonts/PirataOne-Regular.ttf" id="1_ketox"]
+[ext_resource type="Texture2D" uid="uid://dd5chn7mty8ao" path="res://assets/ui/buttons/Button_Blue_3Slides.png" id="2_svl4o"]
+[ext_resource type="Texture2D" uid="uid://t6ugsh3rd7ag" path="res://assets/ui/buttons/Button_Blue_3Slides_Pressed.png" id="3_x8rbx"]
+[ext_resource type="Texture2D" uid="uid://crpe6wlm1i2bo" path="res://assets/ui/buttons/Button_Hover_3Slides.png" id="4_grgci"]
+
+[node name="EndGameScreen" type="Control" unique_id=1612729003]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1108360962]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.46666667)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=499391115]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 150
+alignment = 1
+
+[node name="Result" type="Label" parent="VBoxContainer" unique_id=1658625551]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.69411767)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 13
+theme_override_fonts/font = ExtResource("1_ketox")
+theme_override_font_sizes/font_size = 160
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=2027058754]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Replay" type="TextureButton" parent="VBoxContainer/HBoxContainer" unique_id=76427719]
+custom_minimum_size = Vector2(450, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("2_svl4o")
+texture_pressed = ExtResource("3_x8rbx")
+texture_hover = ExtResource("4_grgci")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Replay" unique_id=2104104564]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.69411767)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 13
+theme_override_fonts/font = ExtResource("1_ketox")
+theme_override_font_sizes/font_size = 60
+text = "Replay"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMenu" type="TextureButton" parent="VBoxContainer/HBoxContainer" unique_id=951282674]
+custom_minimum_size = Vector2(450, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("2_svl4o")
+texture_pressed = ExtResource("3_x8rbx")
+texture_hover = ExtResource("4_grgci")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/MainMenu" unique_id=106122239]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.69411767)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 13
+theme_override_fonts/font = ExtResource("1_ketox")
+theme_override_font_sizes/font_size = 60
+text = "Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
