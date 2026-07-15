@@ -1,6 +1,7 @@
 extends Node
 
 @export var main_menu_packed: PackedScene
+@export var game_scene_packed: PackedScene
 
 
 func _ready() -> void:
@@ -16,8 +17,11 @@ func load_main_menu(_origin: String) -> void:
 	add_child(main_menu)
 
 
-func new_game(_origin: String) -> void:
-	pass
+func new_game(origin: String) -> void:
+	if origin == "main_menu":
+		get_node("MainMenu").queue_free()
+	var game_scene = game_scene_packed.instantiate()
+	add_child(game_scene)
 	
 	
 func settings_open(_origin: String) -> void:
